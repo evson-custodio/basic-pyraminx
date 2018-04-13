@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pyraminx</title>
+        <script src="js/vendor/three.js/three.js"></script>
+        <script src="js/vendor/three.js/OrbitControls.js"></script>
+        <script src="js/objetos/TetraedroMath.js"></script>
+        <script src="js/objetos/Tetraedro.js"></script>
+        <script src="js/objetos/Octaedro.js"></script>
+        <script src="js/objetos/Pyraminx.js"></script>
+        <script src="js/objetos/Grupo.js"></script>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden
+            }
+            canvas {
+                width: 100%;
+                height: 100%
+            }
+            .dg.ac {
+                z-index: 1;
+            }
+            #info {
+                font-family: 'Courier New', Courier, monospace;
+                position: absolute;
+                width: 100%;
+                text-align: center;
+            }
+            input {
+                margin: 0.5%;
+                margin-top: 1%
+            }
+        </style>
+    </head>
+    <body>
+        <div id="info">
+            <span>Aperte os botões 1, 2, 3, 4 e 5 para selecionar um grupo:</span><br />
+            <span>1 - Tetraedro, 2 - Octaedro, 3 - Pyraminx, 4 - Linha, 5 - Face</span><br />
+            <span>Aperte as setas do teclado para rotacionar:</span><br />
+            <span>A - Cima, B - Esquerda, C - Direita, D - Baixo</span><br />
+        </div>
+        <script src="js/app.js"></script>
+    </body>
+</html>
