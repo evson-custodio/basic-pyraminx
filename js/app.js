@@ -24,7 +24,7 @@ let amarelo  = 0xffff00; // Amarelo
 let preto    = 0x777777; // Preto
 
 // Objetos da cena
-let tetraedroMath = TetraedronMath(2); // Objeto contendo medidas de um tetraedro regular de aresta 2
+let tetraedroMath = TetraedroMath(2); // Objeto contendo medidas de um tetraedro regular de aresta 2
 let pyraminx = Pyraminx(tetraedroMath, vermelho, verde, azul, amarelo, preto); // Objeto Pyraminx
 let grupo = Grupo(pyraminx); // Grupo que ira manipular os tetraedros e octaedros componentes do Pyraminx passado
 

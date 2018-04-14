@@ -1,5 +1,5 @@
 // Funcao que retorna um objeto com as medidas de um tetraedro regular de tamanho passado
-function TetraedronMath(tamanhoAresta) {
+function TetraedroMath(tamanhoAresta) {
     // Funcao que calcula a altura de um tetraedro regular
     function altura() {
         return tamanhoAresta * Math.sqrt(6) / 3; // retorna uma altura
