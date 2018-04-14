@@ -16,26 +16,20 @@ orbita.enableKeys = false; // Desativa os eventos de teclado da orbita
 orbita.enablePan = false; // Desativa o evento de arrastar da orbita
 atualizarCamera(); // Atualiza a camera
 
-// Cores utilizadas nos objetos
-let vermelho = 0xff0000; // Vermelho
-let verde    = 0x00ff00; // Verde
-let azul     = 0x0000ff; // Azul
-let amarelo  = 0xffff00; // Amarelo
-let preto    = 0x777777; // Preto
+// Atualiza a camera com as medidas atuais da janela
+function atualizarCamera() {
+    aspecto = window.innerWidth / window.innerHeight; // Calcula o aspecto atual da janela
+    camera.left = -frustum * aspecto / 2; // Calcula frustum esquerdo
+    camera.right = frustum * aspecto / 2; // Calcula frustum direito
+    camera.position.set(0, 0, 10); // Translada a camera 10 posicoes no eixo Z
+    camera.updateProjectionMatrix(); // Atualiza a matriz de projecao da camera
+    renderer.setSize(window.innerWidth, window.innerHeight); // Atribui o novo tamanho da janela no renderizador
+}
 
-// Objetos da cena
-let tetraedroMath = TetraedroMath(2); // Objeto contendo medidas de um tetraedro regular de aresta 2
-let pyraminx = Pyraminx(tetraedroMath, vermelho, verde, azul, amarelo, preto); // Objeto Pyraminx
-let grupo = Grupo(pyraminx); // Grupo que ira manipular os tetraedros e octaedros componentes do Pyraminx passado
-
-// Variáveis de controle do comportamento
-let eventos = []; // Array de eventos gerados pelo teclado
-let nomeGrupo = 'Tetraedro'; // String contendo o tipo de rotacao atual
-let rotacao; // Variável que recebe a funcao de rotacao atual, inicializada com 
-
-// Adicao de objetos a cena
-cena.add(pyraminx); // Pyraminx adicionado
-cena.add(grupo); // Grupo adicionado
+// Funcao de renderizacao da cena
+function render() {
+    renderer.render(cena, camera); // Renderiza a cena com a camera usando o renderizador
+}
 
 // Adicao de um evento a orbita utilizada para chamar a funcao render() sempre que for alterada
 orbita.addEventListener('change', function() {
@@ -53,20 +47,26 @@ window.addEventListener('keydown', function(event) {
     eventos.push(event); // Adicionando o evento capturado no final do Array Eventos
 });
 
-// Atualiza a camera com as medidas atuais da janela
-function atualizarCamera() {
-    aspecto = window.innerWidth / window.innerHeight; // Calcula o aspecto atual da janela
-    camera.left = -frustum * aspecto / 2; // Calcula frustum esquerdo
-    camera.right = frustum * aspecto / 2; // Calcula frustum direito
-    camera.position.set(0, 0, 10); // Translada a camera 10 posicoes no eixo Z
-    camera.updateProjectionMatrix(); // Atualiza a matriz de projecao da camera
-    renderer.setSize(window.innerWidth, window.innerHeight); // Atribui o novo tamanho da janela no renderizador
-}
+// Cores utilizadas nos objetos
+let vermelho = 0xff0000; // Vermelho
+let verde    = 0x00ff00; // Verde
+let azul     = 0x0000ff; // Azul
+let amarelo  = 0xffff00; // Amarelo
+let preto    = 0x777777; // Preto
 
-// Funcao de renderizacao da cena
-function render() {
-    renderer.render(cena, camera); // Renderiza a cena com a camera usando o renderizador
-}
+// Objetos da cena
+let tetraedroMath = TetraedroMath(2); // Objeto contendo medidas de um tetraedro regular de aresta 2
+let pyraminx = Pyraminx(tetraedroMath, vermelho, verde, azul, amarelo, preto); // Objeto Pyraminx
+let grupo = Grupo(pyraminx); // Grupo que ira manipular os tetraedros e octaedros componentes do Pyraminx passado
+
+// Adicao de objetos a cena
+cena.add(pyraminx); // Pyraminx adicionado
+cena.add(grupo); // Grupo adicionado
+
+// Variáveis de controle do comportamento
+let eventos = []; // Array de eventos gerados pelo teclado
+let nomeGrupo = 'Tetraedro'; // String contendo o tipo de rotacao atual
+let rotacao; // Variável que recebe a funcao de rotacao atual, inicializada com 
 
 // Funcao que trata os eventos de teclado para a animacao
 function tratarEventos() {
